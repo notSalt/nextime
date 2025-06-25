@@ -22,9 +22,6 @@ import { CalendarEvent } from "./event-calendar";
 import { Textarea } from "./ui/textarea";
 import { toast } from "sonner";
 import { format } from 'date-fns'
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const data = {
   user: {
@@ -89,7 +86,7 @@ export function AppSidebar({ onNLPCreate, ...props }: {
             setLoading(true);
 
             try {
-              const res = await fetch(`/api/ai/parse-event`, {
+              const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ai/parse-event`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -100,7 +97,7 @@ export function AppSidebar({ onNLPCreate, ...props }: {
 
               const parsed = await res.json();
 
-              const saved = await fetch(`/api/events/create`, {
+              const saved = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/create`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

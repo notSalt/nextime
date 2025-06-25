@@ -2,9 +2,6 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export default function LogoutPage() {
   const router = useRouter();
@@ -12,7 +9,7 @@ export default function LogoutPage() {
   useEffect(() => {
     const logout = async () => {
       try {
-        await fetch(`/api/auth/logout`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
           method: 'POST',
           credentials: 'include',
         });

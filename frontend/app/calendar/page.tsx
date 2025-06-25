@@ -3,14 +3,11 @@
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
 import axios from "axios";
-import dotenv from 'dotenv';
 
 import { CalendarEvent } from "@/components/event-calendar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import BigCalendar from "@/components/big-calendar";
-
-dotenv.config();
 
 export default function Page() {
   const router = useRouter();
@@ -19,7 +16,7 @@ export default function Page() {
   useEffect(() => {
     const checkAuth = async () => {
     try {
-      await axios.get(`/api/auth/me`, {
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
         withCredentials: true,
       });
     } catch (err) {
@@ -32,7 +29,7 @@ export default function Page() {
   }, [router]);
 
   useEffect(() => {
-    axios.get(`/api/events/fetch`, { withCredentials: true })
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events/fetch`, { withCredentials: true })
       .then((res) => setEvents(res.data))
       .catch((err) => console.error("Failed to fetch events:", err));
   }, []);

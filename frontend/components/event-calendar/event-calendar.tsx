@@ -47,9 +47,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import ThemeToggle from "@/components/theme-toggle";
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export interface EventCalendarProps {
   events?: CalendarEvent[];
@@ -184,7 +181,7 @@ export function EventCalendar({
       onEventUpdate?.(event);
 
       try {
-        await axios.post(`/api/events/update`, {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/events/update`, {
           id: event.id,
           title: event.title,
           startTime: event.start,
@@ -204,7 +201,7 @@ export function EventCalendar({
       });
     } else { // handle event creation
       try {
-        const { data: savedEvent } = await axios.post(`/api/events/create`, {
+        const { data: savedEvent } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/events/create`, {
           title: event.title,
           description: event.description,
           startTime: event.start,
@@ -236,7 +233,7 @@ export function EventCalendar({
     onEventDelete?.(eventId);
 
     try {
-      await axios.post(`/api/events/delete`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/events/delete`, {
         id: eventId
       }, {
         withCredentials: true
@@ -262,7 +259,7 @@ export function EventCalendar({
     onEventUpdate?.(updatedEvent);
 
     try {
-        await axios.post(`/api/events/update`, {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/events/update`, {
           id: updatedEvent.id,
           title: updatedEvent.title,
           startTime: updatedEvent.start,
