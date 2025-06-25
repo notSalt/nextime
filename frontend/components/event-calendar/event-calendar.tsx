@@ -184,7 +184,7 @@ export function EventCalendar({
       onEventUpdate?.(event);
 
       try {
-        await axios.post(`${process.env.API_URL}/events/update`, {
+        await axios.post(`/api/events/update`, {
           id: event.id,
           title: event.title,
           startTime: event.start,
@@ -204,7 +204,7 @@ export function EventCalendar({
       });
     } else { // handle event creation
       try {
-        const { data: savedEvent } = await axios.post(`${process.env.API_URL}/events/create`, {
+        const { data: savedEvent } = await axios.post(`/api/events/create`, {
           title: event.title,
           description: event.description,
           startTime: event.start,
@@ -236,7 +236,7 @@ export function EventCalendar({
     onEventDelete?.(eventId);
 
     try {
-      await axios.post(`${process.env.API_URL}/events/delete`, {
+      await axios.post(`/api/events/delete`, {
         id: eventId
       }, {
         withCredentials: true
@@ -262,7 +262,7 @@ export function EventCalendar({
     onEventUpdate?.(updatedEvent);
 
     try {
-        await axios.post(`${process.env.API_URL}/events/update`, {
+        await axios.post(`/api/events/update`, {
           id: updatedEvent.id,
           title: updatedEvent.title,
           startTime: updatedEvent.start,

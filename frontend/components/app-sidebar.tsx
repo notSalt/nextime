@@ -89,7 +89,7 @@ export function AppSidebar({ onNLPCreate, ...props }: {
             setLoading(true);
 
             try {
-              const res = await fetch(`${process.env.API_URL}/ai/parse-event`, {
+              const res = await fetch(`/api/ai/parse-event`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -100,7 +100,7 @@ export function AppSidebar({ onNLPCreate, ...props }: {
 
               const parsed = await res.json();
 
-              const saved = await fetch(`${process.env.API_URL}/events/create`, {
+              const saved = await fetch(`/api/events/create`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

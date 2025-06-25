@@ -19,7 +19,7 @@ export default function Page() {
   useEffect(() => {
     const checkAuth = async () => {
     try {
-      await axios.get(`${process.env.API_URL}/auth/me`, {
+      await axios.get(`/api/auth/me`, {
         withCredentials: true,
       });
     } catch (err) {
@@ -32,7 +32,7 @@ export default function Page() {
   }, [router]);
 
   useEffect(() => {
-    axios.get(`${process.env.API_URL}/events/fetch`, { withCredentials: true })
+    axios.get(`/api/events/fetch`, { withCredentials: true })
       .then((res) => setEvents(res.data))
       .catch((err) => console.error("Failed to fetch events:", err));
   }, []);

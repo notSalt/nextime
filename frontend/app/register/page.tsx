@@ -22,7 +22,7 @@ export default function RegisterPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/auth/me`, {
+        await axios.get(`/api/auth/me`, {
           withCredentials: true,
         });
         router.push("/calendar");
@@ -40,7 +40,7 @@ export default function RegisterPage() {
     }
 
     setLoading(true);
-    const res = await fetch(`${process.env.API_URL}/auth/register`, {
+    const res = await fetch(`/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

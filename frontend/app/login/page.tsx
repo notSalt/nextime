@@ -20,7 +20,7 @@ export default function LoginPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/auth/me`, {
+        await axios.get(`/api/auth/me`, {
           withCredentials: true,
         });
         router.push("/calendar");
@@ -31,7 +31,7 @@ export default function LoginPage() {
   }, [router]);
 
   const handleLogin = async () => {
-    const res = await fetch(`${process.env.API_URL}/auth/login`, {
+    const res = await fetch(`/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
