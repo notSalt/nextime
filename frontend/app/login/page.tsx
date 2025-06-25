@@ -8,6 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -17,7 +20,7 @@ export default function LoginPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:5000/api/auth/me", {
+        await axios.get(`${process.env.API_URL}/auth/me`, {
           withCredentials: true,
         });
         router.push("/calendar");
@@ -28,7 +31,7 @@ export default function LoginPage() {
   }, [router]);
 
   const handleLogin = async () => {
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+    const res = await fetch(`${process.env.API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

@@ -8,6 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -19,7 +22,7 @@ export default function RegisterPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:5000/api/auth/me", {
+        await axios.get(`${process.env.API_URL}/auth/me`, {
           withCredentials: true,
         });
         router.push("/calendar");
@@ -37,7 +40,7 @@ export default function RegisterPage() {
     }
 
     setLoading(true);
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch(`${process.env.API_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
