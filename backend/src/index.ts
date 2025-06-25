@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
 	cors({
-		origin: "*", // allow all origins for now till stable deployment
+		origin: ['http://localhost:3000', 'http://nextime.notsalt.com', 'https://nextime.notsalt.com'],
 		credentials: true,
 	})
 );
