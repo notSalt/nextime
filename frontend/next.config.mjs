@@ -1,9 +1,7 @@
 const nextConfig = {
-  reactStrictMode: true,
   assetPrefix: "/nextime-static",
   transpilePackages: ["@workspace/ui"],
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,7 +9,6 @@ const nextConfig = {
       },
     ],    
   },
-  output: 'export',
   distDir: 'dist'
 }
 
