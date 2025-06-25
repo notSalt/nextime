@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
 	cors({
-		origin: ['http://localhost:3000', 'http://nextime.notsalt.com', 'https://nextime.notsalt.com'],
+		origin: process.env.ORIGIN_URL || 'http://localhost:3000',
 		credentials: true,
 	})
 );
