@@ -47,6 +47,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import ThemeToggle from "@/components/theme-toggle";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export interface EventCalendarProps {
   events?: CalendarEvent[];

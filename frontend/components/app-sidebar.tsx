@@ -22,6 +22,9 @@ import { CalendarEvent } from "./event-calendar";
 import { Textarea } from "./ui/textarea";
 import { toast } from "sonner";
 import { format } from 'date-fns'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const data = {
   user: {
