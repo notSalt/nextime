@@ -7,6 +7,16 @@ export const register = async (req: Request, res: Response) => {
 	const hashed = await bcrypt.hash(password, 10);
 	const user = await User.create({ username: "John", email, password: hashed });
 	req.session.userId = user._id.toString();
+
+	// Set non-HttpOnly cookie that middleware can read
+		res.cookie('isLoggedIn', 'true', {
+			httpOnly: false,
+			secure: true,
+			sameSite: 'none',
+			domain: '.notsalt.com',
+			maxAge: 1000 * 60 * 60 * 24,  // 1 day
+		});
+	
 	res.json({ message: 'Registered', user });
 };
 
@@ -17,7 +27,17 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 		res.status(401).json({ message: 'Invalid credentials' });
 	} else {
 		req.session.userId = user._id.toString();
-		res.json({ message: 'Logged in', user });
+
+		// Set non-HttpOnly cookie that middleware can read
+		res.cookie('isLoggedIn', 'true', {
+			httpOnly: false,
+			secure: true,
+			sameSite: 'none',
+			domain: '.notsalt.com',
+			maxAge: 1000 * 60 * 60 * 24,  // 1 day
+		});
+
+		res.json({ message: 'Logged in' });
 	}
 };
 
