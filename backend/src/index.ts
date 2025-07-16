@@ -33,7 +33,7 @@ app.use(
 			httpOnly: false,
 			sameSite: 'lax',
 			maxAge: 1000 * 60 * 60 * 24 * 7,
-			domain: '.notsalt.com'
+			domain: 'nextime.notsalt.com'
 		}, // 7 days
 	})
 );
