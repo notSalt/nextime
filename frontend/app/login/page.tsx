@@ -35,6 +35,8 @@ export default function LoginPage() {
       body: JSON.stringify({ email, password }),
     });
 
+    console.log(res.ok);
+
     if (res.ok) {
       router.push('/calendar');
     } else {
