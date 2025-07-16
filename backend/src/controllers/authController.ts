@@ -13,7 +13,7 @@ export const register = async (req: Request, res: Response) => {
 			httpOnly: false,
 			secure: true,
 			sameSite: 'none',
-			domain: '.notsalt.com',
+			domain: 'nextime.notsalt.com',
 			maxAge: 1000 * 60 * 60 * 24,  // 1 day
 		});
 	
@@ -33,7 +33,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 			httpOnly: false,
 			secure: true,
 			sameSite: 'none',
-			domain: '.notsalt.com',
+			domain: 'nextime.notsalt.com',
 			maxAge: 1000 * 60 * 60 * 24,  // 1 day
 		});
 
