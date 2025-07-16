@@ -18,6 +18,7 @@ app.use(
 		credentials: true,
 	})
 );
+console.log(`${process.env.ORIGIN_URL}`);
 app.use(express.json());
 
 app.use(
@@ -36,6 +37,19 @@ app.use(
 );
 
 initializeDatabase();
+
+// debugging cors middleware
+app.use((req, res, next) => {
+  console.log('--- Incoming Request ---');
+  console.log('Time:', new Date().toISOString());
+  console.log('Origin:', req.headers.origin);
+  console.log('Method:', req.method);
+  console.log('URL:', req.originalUrl);
+  console.log('Headers:', req.headers);
+  console.log('Cookies:', req.headers.cookie || 'None');
+  console.log('------------------------');
+  next();
+});
 
 app.use('/api/events', eventRoutes);
 app.use('/api/auth', authRoutes);
