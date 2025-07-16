@@ -26,13 +26,14 @@ app.use(
 	session({
 		secret: process.env.SESSION_SECRET || 'pizza',
 		resave: false,
-		saveUninitialized: true,
+		saveUninitialized: false,
 		store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
 		cookie: {
 			secure: true,
-			httpOnly: true,
-			sameSite: 'none',
+			httpOnly: false,
+			sameSite: 'lax',
 			maxAge: 1000 * 60 * 60 * 24 * 7,
+			domain: '.notsalt.com'
 		}, // 7 days
 	})
 );
