@@ -21,6 +21,7 @@ app.use(
 console.log(`${process.env.ORIGIN_URL}`);
 app.use(express.json());
 
+app.set("trust proxy", true);
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET || 'pizza',
