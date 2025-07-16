@@ -9,14 +9,14 @@ export const register = async (req: Request, res: Response) => {
 	req.session.userId = user._id.toString();
 
 	// Set non-HttpOnly cookie that middleware can read
-		res.cookie('isLoggedIn', 'true', {
-			httpOnly: false,
-			secure: true,
-			sameSite: 'none',
-			domain: 'nextime.notsalt.com',
-			maxAge: 1000 * 60 * 60 * 24,  // 1 day
-		});
-	
+	res.cookie('isLoggedIn', 'true', {
+		httpOnly: false,
+		secure: true,
+		sameSite: 'none',
+		domain: '.notsalt.com',
+		maxAge: 1000 * 60 * 60 * 24,  // 1 day
+	});
+
 	res.json({ message: 'Registered', user });
 };
 
@@ -33,7 +33,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 			httpOnly: false,
 			secure: true,
 			sameSite: 'none',
-			domain: 'nextime.notsalt.com',
+			domain: '.notsalt.com',
 			maxAge: 1000 * 60 * 60 * 24,  // 1 day
 		});
 
@@ -54,6 +54,13 @@ export const logout = async (req: Request, res: Response) => {
 			httpOnly: true,
 			sameSite: 'lax',
 			secure: process.env.NODE_ENV === 'production',
+		});
+
+		res.clearCookie('isLoggedIn', {
+			domain: '.notsalt.com',
+			path: '/',
+			secure: true,
+			sameSite: 'none',
 		});
 
 		res.status(200).json({ message: 'Logged out successfully' });
