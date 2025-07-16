@@ -27,7 +27,7 @@ app.use(
 		secret: process.env.SESSION_SECRET || 'pizza',
 		resave: false,
 		saveUninitialized: false,
-		store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+		store: MongoStore.create({ mongoUrl: process.env.MONGO_URI, autoRemove: 'native' }),
 		cookie: {
 			secure: true,
 			httpOnly: false,
