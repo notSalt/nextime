@@ -25,10 +25,10 @@ import { format } from 'date-fns'
 
 const data = {
   user: {
-    name: "Joshua Koh",
-    email: "test@notsalt.com",
+    name: "John",
+    email: "john@example.com",
     avatar:
-      "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp6/user-01_l4if9t.png",
+      "https://avatars.githubusercontent.com/u/424443?v=4",
   },
 };
 
@@ -96,6 +96,7 @@ export function AppSidebar({ onNLPCreate, ...props }: {
               });
 
               const parsed = await res.json();
+              console.log(parsed);
 
               const saved = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/create`, {
                 method: "POST",
@@ -106,8 +107,8 @@ export function AppSidebar({ onNLPCreate, ...props }: {
                 body: JSON.stringify({
                   title: parsed.title,
                   description: parsed.description || "",
-                  startTime: parsed.start,
-                  endTime: parsed.end,
+                  startTime: new Date(Date.parse(parsed.start)),
+                  endTime: new Date(Date.parse(parsed.end)),
                 }),
               });
 

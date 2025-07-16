@@ -14,8 +14,8 @@ export const parseEvent = async (req: Request, res: Response) => {
 		Give a user input in natural language, extract and return a structured JSON object with the following keys:
 		- title: short title for the event
 		- description: description for the event
-		- startTime: ISO 8601 format
-		- endTime: ISO 8601 format (estimate duration if not specified)
+		- startTime: ISO 8601 format (ensure timezone is +08:00)
+		- endTime: ISO 8601 format (estimate duration if not specified) (ensure timezone is +08:00)
 
 		Respond only with valid JSON.
 
